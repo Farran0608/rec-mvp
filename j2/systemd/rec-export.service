@@ -1,0 +1,7 @@
+[Unit]
+Description=REC nightly export to CSV
+After=network-online.target tailscaled.service
+Wants=network-online.target
+[Service]
+Type=oneshot
+ExecStart=/opt/rec/j2/export_trips.sh yesterday

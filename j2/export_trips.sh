@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 set -euo pipefail
 ARG="${1:-yesterday}"
 if [ "$ARG" = "today" ]; then DAY=$(date -u +%F)
@@ -6,4 +7,6 @@ else DAY="$ARG"; fi
 FROM="${DAY}T00:00:00Z"; TO="${DAY}T23:59:59Z"
 OUT="/opt/rec/exports/trips-${DAY}.csv"; TMP="${OUT}.tmp"
 URL="http://100.64.189.32/export_csv?from=${FROM}&to=${TO}"
-curl -fsS "$URL" -o "$TMP"; mv "$TMP" "$OUT"; echo "$OUT"
+curl -fsS "$URL" -o "$TMP"
+mv "$TMP" "$OUT"
+echo "$OUT"

@@ -1,0 +1,8 @@
+[Unit]
+Description=REC nightly export timer (02:15 UTC)
+[Timer]
+OnCalendar=*-*-* 02:15:00
+Persistent=true
+Unit=rec-export.service
+[Install]
+WantedBy=timers.target
