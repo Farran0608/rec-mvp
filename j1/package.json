@@ -1,0 +1,18 @@
+{
+  "name": "rec-j1",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "build": "rimraf dist && tsc", "start": "node dist/index.js" },
+  "dependencies": {
+    "@prisma/client": "^5.19.0",
+    "express": "^4.19.2",
+    "prisma": "^5.19.0",
+    "rimraf": "^5.0.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}

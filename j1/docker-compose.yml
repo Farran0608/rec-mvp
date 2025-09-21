@@ -1,0 +1,16 @@
+services:
+  rec_api:
+    build: .
+    image: rec-j1:latest
+    container_name: rec-j1
+    ports:
+      - "80:3000"
+    env_file: .env
+    volumes:
+      - /opt/rec/data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:3000/healthz"]
+      interval: 10s
+      timeout: 3s
+      retries: 20

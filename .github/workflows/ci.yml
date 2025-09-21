@@ -1,0 +1,25 @@
+name: CI
+on: { push: { branches: [ main ] }, pull_request: {} }
+jobs:
+  j1-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 18 }
+      - name: Install
+        working-directory: j1
+        run: npm ci || npm i
+      - name: Typecheck & build
+        working-directory: j1
+        run: |
+          npm run build
+          npx prisma generate
+      - name: Enable QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Build image (arm64)
+        uses: docker/build-push-action@v6
+        with:
+          context: j1
+          platforms: linux/arm64
+          push: false
